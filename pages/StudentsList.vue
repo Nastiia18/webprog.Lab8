@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 const columns = [{
   key: 'id',
@@ -53,38 +52,85 @@ const people = [{
   title: 'Principal Designer',
   email: 'floyd.miles@example.com',
   role: 'Member'
+}, {
+  id: 7,
+  name: 'Emily Selman',
+  title: 'VP, User Experience',
+  email: '',
+  role: 'Admin'
+}, {
+  id: 8,
+  name: 'Kristin Watson',
+  title: 'VP, Human Resources',
+  email: '',
+  role: 'Member'
+}, {
+  id: 9,
+  name: 'Emma Watson',
+  title: 'Front-end Developer',
+  email: '',
+  role: 'Member'
+}, {
+  id: 10,
+  name: 'John Doe',
+  title: 'Designer',
+  email: '',
+  role: 'Admin'
+}, {
+  id: 11,
+  name: 'Jane Doe',
+  title: 'Director of Product',
+  email: '',
+  role: 'Member'
+}, {
+  id: 12,
+  name: 'John Smith',
+  title: 'Copywriter',
+  email: '',
+  role: 'Admin'
+}, {
+  id: 13,
+  name: 'Jane Smith',
+  title: 'Senior Designer',
+  email: '',
+  role: 'Owner'
 }]
 
-const q = ref('')
 
+const q = ref('');
 const filteredRows = computed(() => {
   if (!q.value) {
-    return people
+    return people;
   }
 
   return people.filter((person) => {
     return Object.values(person).some((value) => {
-      return String(value).toLowerCase().includes(q.value.toLowerCase())
-    })
-  })
-})
-const page = ref(1)
-const pageCount = 5
+      return String(value).toLowerCase().includes(q.value.toLowerCase());
+    });
+  });
+});
 
+
+const page = ref(1);
+const pageCount = 5;
 const rows = computed(() => {
-  return people.slice((page.value - 1) * pageCount, (page.value) * pageCount)
-})
+  return filteredRows.value.slice((page.value - 1) * pageCount, page.value * pageCount);
+});
 </script>
 
 <template>
   <div>
+
     <div class="flex px-3 py-3.5 border-b border-gray-200 dark:border-gray-700">
       <UInput v-model="q" placeholder="Filter people..." />
     </div>
 
-    <UTable :rows="filteredRows" :columns="columns" />
+
+    <UTable :rows="rows" :columns="columns" />
+
+
     <div class="flex justify-end px-3 py-3.5 border-t border-gray-200 dark:border-gray-700">
-      <UPagination v-model="page" :page-count="pageCount" :total="people.length" />
+      <UPagination v-model="page" :page-count="pageCount" :total="filteredRows.length" />
     </div>
   </div>
 </template>
