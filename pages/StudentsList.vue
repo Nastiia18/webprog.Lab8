@@ -96,7 +96,7 @@ const people = [{
   role: 'Owner'
 }]
 
-
+//фільтрація
 const q = ref('');
 const filteredRows = computed(() => {
   if (!q.value) {
