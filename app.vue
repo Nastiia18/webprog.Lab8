@@ -4,5 +4,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import StudentsList from "~/pages/StudentsList.vue";
+import StudentsList from "~/pages/ProductList.vue";
 </script>
