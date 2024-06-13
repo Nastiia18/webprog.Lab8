@@ -37,6 +37,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
+
 const posts = ref([]);
 
 const getPosts = async () => {

@@ -11,9 +11,13 @@
           <template #category-title-data="{ row }">
             <span>{{ row.category.title }}</span>
           </template>
+
+         
+          
           <template #title-data="{ row }">
-            <a :href="'/admin/blog/posts/' + row.id + '/edit'">{{ row.title }}</a>
-          </template>
+  <router-link :to="`/BlogPost/${row.id}`">{{ row.title }}</router-link>
+</template>
+
           <template #published-at-data="{ row }">
             <span>{{ row.published_at }}</span>
           </template>
